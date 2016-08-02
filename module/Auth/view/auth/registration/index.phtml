@@ -1,0 +1,111 @@
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+<div class="bs-docs-section">
+    <div class="well">
+        
+<?php
+
+$form->setAttribute('action', $this->url('auth/default', array('controller' => 'registration', 'action' => 'index')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+    echo '<fieldset><legend>Register now</legend>';
+    foreach ($form as $element) {
+        echo '<div class="form-group">';
+        $attributes = $element->getAttributes();
+        
+        if($element->getLabel()){
+            $element->setLabelAttributes(array('class' => 'col-lg-3 control-label'));
+            
+        }
+        
+        if(isset($attributes['type']) && $attributes['type'] == 'text')
+            {
+            echo $this->formLabel($element);
+            echo '<div class="col-lg-8">';
+                echo $this->formInput($element);
+				echo $this->formElementErrors($element);
+            echo '</div>';
+            }
+            elseif (isset($attributes['type']) && $attributes['type'] == 'textarea')
+                {
+                    echo $this->formLabel($element);
+                    echo '<div class="col-lg-8">';
+                        echo $this->formTextArea($element);
+                    echo '</div>';
+                }
+            elseif(isset($attributes['type']) && $attributes['type'] == 'file')
+                {
+                    echo $this->formLabel($element);
+                    echo '<div class="col-lg-8">';
+                        echo $this->formFile($element);
+                    echo '</div>';
+                }
+                elseif(isset($attributes['type']) && $attributes['type'] == 'email')
+                {
+                    echo $this->formLabel($element);
+                    echo '<div class="col-lg-8">';
+                    echo $this->formEmail($element);
+					echo $this->formElementErrors($element);
+                    echo '</div>';
+                }
+                 elseif(isset($attributes['type']) && $attributes['type'] == 'password')
+                {
+                    echo $this->formLabel($element);
+                    echo '<div class="col-lg-8">';
+                    echo $this->formPassword($element);
+					echo $this->formElementErrors($element);
+                    echo '</div>';
+                }
+                
+                else 
+                {
+                echo '<div class="col-lg-12">';
+                     echo $this->formRow($element);
+                     echo '</div>';
+                }
+                        
+                echo '</div>';
+                        
+    }
+            
+echo '</fieldset>';
+echo $this->form()->closeTag();
+?>
+    
+    </div>
+</div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+
+<br />
+<?php // view helper
+    if ($user = $this->identity()) {
+        echo 'Logged in as ' . $this->escapeHtml($user->usr_name);echo "<br/>";
+        echo 'Id -> ' . $this->escapeHtml($user->usr_id); echo "<br/>";
+        echo 'email -> ' . $this->escapeHtml($user->usr_email); echo "<br/>";
+        echo 'data -> ' . $this->escapeHtml($user->usr_registration_date); echo "<br/>";
+        $role = '';
+        if ($user->usrl_id == 1) $role = 'guest';
+        else if ($user->usrl_id == 2) $role = 'member';
+        else if ($user->usrl_id == 3) $role = 'admin';
+        else $role = 'hz kakaya rol';
+        echo 'Role -> ' . $this->escapeHtml($role); echo "<br/>";
+    }
+       
+?>
+   
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    

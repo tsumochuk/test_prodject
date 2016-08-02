@@ -1,0 +1,53 @@
+
+<?php
+$title = 'View all products';
+$this->headTitle($title);
+?>
+<br />
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>'
+        . '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">'
+        . '&times;</button><ul><li>')
+        ->setMessageSeparatorString('</li><li>')
+        ->setMessageCloseString('</li></ul></div>');
+
+echo $flash->render('error',    array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flash->render('info',     array('alert', 'alert-dismissable', 'alert-info'));
+echo $flash->render('default',  array('alert', 'alert-dismissable', 'alert-warning'));
+echo $flash->render('success',  array('alert', 'alert-dismissable', 'alert-success'));
+?>
+
+	<!--<a href="<?php echo $this->url('products/default', array('controller' => 'index', 'action' => 'add')); ?>" 
+	class="btn btn-primary btn btn-default btn-lg btn-block">Add new product...</a>
+	-->
+
+<?php
+	foreach ($rowset as $row) {
+?>
+		<div class="jumbotron">
+		  <h3><?php  echo $this->escapeHtml($row->product_name); ?></h3>
+		   <blockquote>
+			<small>Ціна : <?php  echo $this->escapeHtml($row->product_price); ?> грн</small>
+			<small>Кількість : <?php  echo $this->escapeHtml($row->product_amount); ?> шт.</small>
+			<small>Додано : <?php  echo $this->escapeHtml($row->product_create_date); ?></small>
+	</blockquote>
+		  <p><?php  echo $this->escapeHtml((mb_substr($row->product_discribe,0, 200, 'UTF-8') . '...' )); ?></p>
+		  <p><a href="<?php echo $this->url('products/default', array('controller' => 'index', 'action' => 'view', 'id' => $row->product_id));?>"  class="btn btn-primary btn-lg">Переглянути</a></p>
+		</div>	
+<?php
+	}
+ ?>
+	
+	
+	
+	
+	
+	
+
+
+<?php echo $this->paginationControl($this->rowset,
+                                   'Sliding', // All, Elastic, Jumping, Sliding
+                                    'search_pagination.phtml', //array('route' => $this->url('auth/default', array('controller' => 'Admin', 'action' => 'index')))); 
+                                    array('route' => 'magazin/paginator'));
+?>

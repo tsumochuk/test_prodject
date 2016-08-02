@@ -1,0 +1,21 @@
+<?php 
+    if ($user = $this->identity()) $role = $user->usrl_id;
+	else $role = 0;
+	
+	(!$role >= 2 || $this->rowset->product_amount == 0 ) ? $status = "disabled" : $status = NULL;
+?>
+
+<br />
+<div class="jumbotron">
+  <h2><?php  echo $this->escapeHtml($rowset->product_name); ?></h2>
+  <blockquote>
+  <small>Ціна : <?php  echo $this->escapeHtml($rowset->product_price); ?></small>
+  <small>Кількість : <?php  echo $this->escapeHtml($rowset->product_amount); ?></small>
+  <small>Додано : <?php  echo $this->escapeHtml($rowset->product_create_date); ?></small>
+	</blockquote>
+
+  <p><?php  echo $this->escapeHtml($rowset->product_discribe); ?></p>
+  
+  <p><a href="<?php //echo $this->url('products/default', array('controller' => 'index', 'action' => 'view', 'id' => $rowset->product_id));?>"  class="btn btn-primary btn-lg <?php echo $status?>"
+  >Замовити</a></p>
+</div>

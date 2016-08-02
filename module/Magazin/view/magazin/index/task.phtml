@@ -1,0 +1,122 @@
+
+<blockquote>
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Важливо</strong> 
+    </div>
+    <p>Доробити дрібниціr</p>
+    <small>Додати флешмесенджер при екшенах</small>
+    <small>Доробити інпут фільтри для нових полів</small>
+	<small>Перевірити валідацію</small>
+    
+</blockquote>
+<br />
+
+
+<br />
+<blockquote>
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oh snap!</strong> 
+    </div>
+    <p>Junior PHP Developer</p>
+    <small>Валідація полів форм повинна відбуватися як на стороні сервера, 
+        так і на стороні клієнта
+    </small>
+    <small>Як результат виконання тестового завдання слід його:</small><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>1) Продемонструвати, розгорнувши створенний проект
+        на будь-якому сервері з публічний доступом.</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>2) Надати вихідні коди.</cite><br />
+</blockquote>
+<br />
+
+<br />
+<blockquote>
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Зроблено !</strong> 
+    </div>
+    <p>Реєстрація та авторизація</p>
+    <small>Авторизація та розподілення прав доступу (ACL) на адміністратора і 
+        користувача - повинні бути реалізовані за допомогою засобів ZF2.
+    </small>
+</blockquote>
+<br />
+
+<br />
+<blockquote>
+    <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oh snap! сортування по ціні/імені</strong> 
+    </div>
+    <p>Відображення списку товарів</p>
+    <small>В списку товарів реалізувати пагінацію та сортування по ціні/імені.</small>
+    <small>Інформація про товар повинна містити наступні дані:</small><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Назва товару</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Опис</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Ціна</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Кількість на складі</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Дата створення</cite><br />
+</blockquote>
+<br />
+
+<br />
+<blockquote>
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Зроблено !</strong> 
+    </div>
+    <p>Адмін панель: товари</p>
+    <small>Перегляд списку товарів додавання та редагування товарів.</small>
+</blockquote>
+<br />
+
+<br />
+<blockquote>
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Зроблено !</strong>
+    </div>
+    <p>Адмін панель: список користувачів та перегляд детальної інформації.</p>
+    <small>Інформація про користувача повинна містити наступні дані:</small><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Ім'я</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Електронна адреса</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Мобільний телефон</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>ІР-адреса на момент реєстрації</cite><br />
+</blockquote>
+<br />
+
+<br />
+<blockquote>
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Oh snap!</strong> 
+    </div>
+    <p>Адмін панель: замовлення</p>
+    <small>Список замовлень.</small>
+    <small>Детальна інформація про замовлення повинна містити наступні дані:</small><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Замовлений товар і його кількість</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Дата замовлення</cite><br />
+    <cite title="Source Title"><span style='padding-left:30px;'> </span>Користувач, який замовив товар</cite><br />
+</blockquote>
+<br />
+
+
+
+
+<br />
+<?php // view helper
+    if ($user = $this->identity()) {
+        echo 'Logged in as ' . $this->escapeHtml($user->usr_name);echo "<br/>";
+        echo 'Id -> ' . $this->escapeHtml($user->usr_id); echo "<br/>";
+        echo 'email -> ' . $this->escapeHtml($user->usr_email); echo "<br/>";
+        echo 'data -> ' . $this->escapeHtml($user->usr_registration_date); echo "<br/>";
+        $role = '';
+        if ($user->usrl_id == 1) $role = 'guest';
+        else if ($user->usrl_id == 2) $role = 'member';
+        else if ($user->usrl_id == 3) $role = 'admin';
+        else $role = 'hz kakaya rol';
+        echo 'Role -> ' . $this->escapeHtml($role); echo "<br/>";
+    }
+       
+?>
