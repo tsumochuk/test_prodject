@@ -1,0 +1,89 @@
+<?php
+$title = 'Детальна інформація про замовлення';
+$this->headTitle($title);
+?><br /><br />
+<a href="<?php echo $this->url('products/default', array('controller' => 'order', 'action' => 'all'));?>"
+   class="btn btn-default btn-lg btn-block">Повернутися до списку всіх замовлень</a>
+<br />
+<p class="lead">Загальна інформація про замовлення № <?php echo $this->escapeHtml($order_inf->order_id); ?></p>
+<table class="table table-striped table-hover">
+    <tbody>
+        <tr>
+            <th>Користувач</th>
+            <th>Товар</th>
+            <th>Кількість товару (шт.)</th>
+            <th>Загальна ціна (грн)</th>
+            <th>Статус</th> 
+            <th>Дата замовлення</th>
+        </tr>
+        <tr class="success">
+            <td><?php  echo $this->escapeHtml($user_inf->usr_firstname); 
+                       echo $this->escapeHtml(" ");
+                       echo $this->escapeHtml($user_inf->usr_secondname); ?></td>
+            <td><?php  echo $this->escapeHtml($product_inf->product_name); ?></td>
+            <td><?php  echo $this->escapeHtml($order_inf->order_amount); ?></td>
+            <td><?php  echo $this->escapeHtml($order_inf->order_price); ?></td>
+            <td><?php  if($order_inf->order_status == 0) $status = 'Нове замовлення, нерозглянуте';
+                       else if ($order_inf->order_status == 1) $status = 'Виконане';           
+                       else $status = 'Unknow status';        
+                    echo $this->escapeHtml($status); ?></td>
+            <td><?php  echo $this->escapeHtml($order_inf->order_create_date); ?></td>
+	</tr>
+    </tbody>
+</table>
+
+
+<br />
+<br />
+
+
+<p class="lead">Інформація про користувача 
+    <a href="<?php echo $this->url('auth/default', 
+            array('controller' => 'admin', 'action' => 'view', 'id' => $user_inf->usr_id));?>" 
+            > <?php  echo $this->escapeHtml($user_inf->usr_firstname); ?> 
+    <?php  echo $this->escapeHtml($user_inf->usr_secondname); ?></a>
+    
+    
+   
+</p>
+
+<table class="table table-striped table-hover">
+    <tbody>
+        <tr>
+            <th>Id користувача</th>
+            <th>Логін</th>
+            <th>Номер телефону</th>
+            <th>Email адреса</th>
+            <th>Дата реєстрації</th>
+        </tr> 
+        <tr class="success">
+            <td><?php  echo $this->escapeHtml($user_inf->usr_id); ?></td>
+            <td><?php  echo $this->escapeHtml($user_inf->usr_name); ?></td>
+            <td><?php  echo $this->escapeHtml($user_inf->usr_phone); ?></td>
+            <td><?php  echo $this->escapeHtml($user_inf->usr_email); ?></td>
+            <td><?php  echo $this->escapeHtml($user_inf->usr_registration_date); ?></td>
+	</tr>
+    </tbody>
+</table>
+
+<br />
+<br />
+
+<p class="lead">Загальна інформація про товар № <?php echo $this->escapeHtml($product_inf->product_id); ?></p>
+<table class="table table-striped table-hover">
+    <tbody>
+        <tr>
+            <th>Назва товару</th>
+            <th>Ціна (грн)</th>
+            <th>Кількість товару (шт.)</th>
+            <th>Дата додання</th>
+        </tr>
+        <tr class="success">
+            <td><?php  echo $this->escapeHtml($product_inf->product_name); ?></td>
+            <td><?php  echo $this->escapeHtml($product_inf->product_price); ?></td>
+            <td><?php  echo $this->escapeHtml($product_inf->product_amount); ?></td>
+            <td><?php  echo $this->escapeHtml($product_inf->product_create_date); ?></td>
+	</tr>
+    </tbody>
+</table>
+

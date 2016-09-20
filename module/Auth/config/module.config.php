@@ -5,7 +5,7 @@ return array(
         'invokables' => array(
             'Auth\Controller\Admin'         => 'Auth\Controller\AdminController',		
             'Auth\Controller\Login'         => 'Auth\Controller\LoginController', 
-            'Auth\Controller\Registration'=> 'Auth\Controller\RegistrationController',
+            'Auth\Controller\Registration'	=> 'Auth\Controller\RegistrationController',
               
         ),
     ),

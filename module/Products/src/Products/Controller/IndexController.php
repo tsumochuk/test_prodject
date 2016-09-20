@@ -12,16 +12,14 @@ use Products\Form\ProductForm;
 use Products\Form\ProductFilter;
 use Products\Form\ProductEditFilter;
 
-use Zend\Stdlib\ParametersInterface;
-
 class IndexController extends AbstractActionController
 {
 	
-	protected $productTable = null;
+    protected $productTable = null;
 
     public function indexAction()
     {
-			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
+            $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
 
             $page = 1;
             if ($this->params()->fromRoute('page')) {
@@ -33,7 +31,7 @@ class IndexController extends AbstractActionController
          //   'rowset' => $this->getProductTable()->fetchAll()));
     }
 	
-	public function addAction() 
+    public function addAction() 
 	{
 		$form = new ProductForm();
 		$form->get('submit')->setValue('Add now');
@@ -58,7 +56,7 @@ class IndexController extends AbstractActionController
 		return new ViewModel(array('form' => $form));
 	}
 	
-	public function editAction()
+    public function editAction()
     {
 		$id = $this->params()->fromRoute('id');
 		if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'index', 'action' => 'index'));
@@ -82,7 +80,7 @@ class IndexController extends AbstractActionController
 		return new ViewModel(array('form' => $form, 'id' => $id));
 	}
 	
-	public function deleteAction()
+    public function deleteAction()
     {
 		$id = $this->params()->fromRoute('id');
 		if ($id) {
@@ -92,16 +90,16 @@ class IndexController extends AbstractActionController
 		return $this->redirect()->toRoute('products/default', array('controller' => 'index', 'action' => 'index'));											
 	}
 	
-	public function viewAction() 
+    public function viewAction() 
 	{
 		$id = $this->params()->fromRoute('id');
 		if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'index', 'action' => 'index'));
-        return new ViewModel(array('rowset' => $this->ProductTable()->getProduct($id)));
+                return new ViewModel(array('rowset' => $this->ProductTable()->getProduct($id)));
 	}
 	
-	public function AllAction() 
+    public function AllAction() 
 	{
-			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
+            $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
 
             $page = 1;
             if ($this->params()->fromRoute('page')) {
@@ -112,14 +110,14 @@ class IndexController extends AbstractActionController
 	}
 	
 	
-	public function prepareData($data) 
+    public function prepareData($data) 
 	{
 		$date = new \DateTime();
 		$data['product_create_date'] = $date->format('Y-m-d H:i:s');
 		return $data;
 	}
 	
-	public function ProductTable()
+    public function ProductTable()
     {
         if (!$this->productTable) {
             $sm = $this->getServiceLocator();
@@ -128,7 +126,7 @@ class IndexController extends AbstractActionController
         return $this->productTable;
     }
 	
-	public function getProductTable()
+    public function getProductTable()
     {
 	// I have a Table data Gateway ready to go right out of the box
 	if (!$this->productTable) {

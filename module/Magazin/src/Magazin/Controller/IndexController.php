@@ -5,41 +5,67 @@ namespace Magazin\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-use Zend\Db\TableGateway\TableGateway;
+use Magazin\Form\SortForm;
+use Magazin\Form\SortFormFilter;
 
 class IndexController extends AbstractActionController
 {
-	protected $productTable = null;
-    
-    public function indexAction()
-    {
-        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
+protected $productTable = null;
 
-        $page = 1;
-        if ($this->params()->fromRoute('page')) {
-        $page = $this->params()->fromRoute('page');}
-        $paginator->setCurrentPageNumber((int)$page);
-        $paginator->setItemCountPerPage(3);
-        return new ViewModel(array('rowset' => $paginator)); 
+public function indexAction()
+    {
+		$paginator = $this->getProductTable()->fetchAll(true,1);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(3);
+
+		return new ViewModel(array('rowset' => $paginator));	
+	}			 
+
+    public function sortnameAction() 
+    {
+		$paginator = $this->getProductTable()->fetchAll(true,2);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(3);
+
+		return new ViewModel(array('rowset' => $paginator));
+        
     }
-		
-	public function taskAction()
+	    public function sortcheapAction() 
+    {
+		$paginator = $this->getProductTable()->fetchAll(true,3);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(3);
+
+		return new ViewModel(array('rowset' => $paginator)); 
+        
+    }
+	    public function sortcostlyAction() 
+    {
+		$paginator = $this->getProductTable()->fetchAll(true,4);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(3);
+
+		return new ViewModel(array('rowset' => $paginator));; 
+        
+    }
+	
+
+
+    public function taskAction()
     {
         return new ViewModel();    
     }
+    
 
 
-
-	public function getProductTable()
+    public function getProductTable()
     {
-		if (!$this->productTable) {
-			$this->productTable = new TableGateway(
-			'product', 
-			$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
-			);
-		}
-	return $this->productTable;
-    }	
+	 if (!$this->productTable) {
+             $sm = $this->getServiceLocator();
+             $this->productTable = $sm->get('Products\Model\ProductTable');
+         }
+         return $this->productTable;
+     }
 	
 
 }

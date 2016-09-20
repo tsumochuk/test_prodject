@@ -16,12 +16,12 @@ class RegistrationForm extends Form
             'name' => 'usr_firstname',
             'attributes' => array(
                 'type'  => 'text',
-		'class' => 'form-control',
+				'class' => 'form-control',
                 'required' => 'required',
                 
             ),
             'options' => array(
-                'label' => 'First name',
+                'label' => 'І\'мя',
             ),
         ));
         
@@ -29,11 +29,11 @@ class RegistrationForm extends Form
             'name' => 'usr_secondname',
             'attributes' => array(
                 'type'  => 'text',
-		'class' => 'form-control',
+				'class' => 'form-control',
                 'required' => 'required',
             ),
             'options' => array(
-                'label' => 'Second name',
+                'label' => 'Прізвище',
             ),
         ));
         
@@ -42,7 +42,7 @@ class RegistrationForm extends Form
             'name' => 'usr_email',
             'attributes' => array(
                 'type'  => 'email',
-		'class' => 'form-control',
+			'class' => 'form-control',
                 'required' => 'required',
             ),
             'options' => array(
@@ -54,11 +54,13 @@ class RegistrationForm extends Form
             'name' => 'usr_phone',
             'attributes' => array(
                 'type'  => 'text',
-		'class' => 'form-control',
+				'class' => 'form-control',
                 'required' => 'required',
+				'placeholder' => '(___)___ __ __',
+				'id' => 'user_phone',
             ),
             'options' => array(
-                'label' => 'Phone',
+                'label' => 'Телефон',
             ),
         ));
         
@@ -66,11 +68,11 @@ class RegistrationForm extends Form
             'name' => 'usr_name',
             'attributes' => array(
                 'type'  => 'text',
-		'class' => 'form-control',
+				'class' => 'form-control',
                 'required' => 'required',
             ),
             'options' => array(
-                'label' => 'Username',
+                'label' => 'Логін',
             ),
         ));
          
@@ -81,12 +83,12 @@ class RegistrationForm extends Form
             'name' => 'usr_password',
             'attributes' => array(
                 'type'  => 'password',
-		'class' => 'form-control',
+				'class' => 'form-control',
                 'required' => 'required',
 				
             ),
             'options' => array(
-                'label' => 'Password',
+                'label' => 'Пароль',
             ),
         ));
 		
@@ -94,11 +96,11 @@ class RegistrationForm extends Form
             'name' => 'usr_password_confirm',
             'attributes' => array(
                 'type'  => 'password',
-		'class' => 'form-control',
+				'class' => 'form-control',
                 'required' => 'required',
             ),
             'options' => array(
-                'label' => 'Confirm Password',
+                'label' => 'Повторіть пароль',
             ),
         ));	
 		
@@ -108,7 +110,7 @@ class RegistrationForm extends Form
 			'type' => 'Zend\Form\Element\Captcha',
 			'name' => 'captcha',
 			'options' => array(
-				'label' => 'Please verify you are human',
+				'label' => 'Введіть зображені символи',
 				'captcha' => new \Zend\Captcha\Figlet(),
 			),
 			'attributes' => array(

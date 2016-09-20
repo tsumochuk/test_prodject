@@ -9,24 +9,24 @@ class RegistrationFilter extends InputFilter
     public function __construct($sm)
     {
     // self::__construct(); // parnt::__construct(); - trows and error
-	$this->add(array(
-            'name'     => 'usr_firstname',
-            'required' => true,
-            'filters'  => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
-            ),
-            'validators' => array(
-		array(
-                    'name'    => 'StringLength',
-                    'options' => array(
-                        'encoding' => 'UTF-8',
-                        'min'      => 1,
-                        'max'      => 100,
-                    ),
-		),
-            ),
-	));
+		$this->add(array(
+			'name'     => 'usr_firstname',
+			'required' => true,
+			'filters'  => array(
+				array('name' => 'StripTags'),
+				array('name' => 'StringTrim'),
+			),
+			'validators' => array(
+				array(
+					'name'    => 'StringLength',
+					'options' => array(
+					'encoding' => 'UTF-8',
+					'min'      => 1,
+					'max'      => 100,
+					),
+				),
+			),
+		));
 
         $this->add(array(
             'name'     => 'usr_secondname',
@@ -36,16 +36,16 @@ class RegistrationFilter extends InputFilter
                 array('name' => 'StringTrim'),
             ),
             'validators' => array(
-		array(
+				array(
                     'name'    => 'StringLength',
                     'options' => array(
                         'encoding' => 'UTF-8',
                         'min'      => 1,
                         'max'      => 100,
                     ),
-		),
+				),
             ),
-	));
+		));
 
         $this->add(array(
             'name'     => 'usr_name',
@@ -55,24 +55,24 @@ class RegistrationFilter extends InputFilter
                 array('name' => 'StringTrim'),
             ),
             'validators' => array(
-		array(
+				array(
                     'name'    => 'StringLength',
                     'options' => array(
                         'encoding' => 'UTF-8',
                         'min'      => 1,
                         'max'      => 100,
                     ),
-		),
-		array(
+				),
+				array(
                     'name'		=> 'Zend\Validator\Db\NoRecordExists',
                     'options' => array(
                         'table'   => 'users',
                         'field'   => 'usr_name',
                         'adapter' => $sm->get('Zend\Db\Adapter\Adapter'),
                     ),
-		),
+				),
             ),
-	));
+		));
 
         $this->add(array(
             'name'       => 'usr_email',
@@ -81,59 +81,72 @@ class RegistrationFilter extends InputFilter
                 array(
                     'name' => 'EmailAddress'
                 ),
-		array(
+				array(
                     'name'		=> 'Zend\Validator\Db\NoRecordExists',
                     'options' => array(
-			'table'   => 'users',
-			'field'   => 'usr_email',
-			'adapter' => $sm->get('Zend\Db\Adapter\Adapter'),
-                    ),
-		),
+						'table'   => 'users',
+						'field'   => 'usr_email',
+						'adapter' => $sm->get('Zend\Db\Adapter\Adapter'),
+					),
+				),
             ),
         ));
 		
-	$this->add(array(
-            'name'     => 'usr_password',
-            'required' => true,
+		$this->add(array(
+            'name'     => 'usr_phone',
+            'required' => false,
             'filters'  => array(
-		array('name' => 'StripTags'),
-		array('name' => 'StringTrim'),
+                array('name' => 'Int'),
             ),
             'validators' => array(
-		array(
-                    'name'    => 'StringLength',
-                    'options' => array(
-			'encoding' => 'UTF-8',
-			'min'      => 6,
-			'max'      => 12,
-                    ),
-		),
+                array(
+                    'name'    => 'Digits',
+                ),
             ),
-	));	
+        ));		
+		
+		$this->add(array(
+			'name'     => 'usr_password',
+			'required' => true,
+			'filters'  => array(
+				array('name' => 'StripTags'),
+				array('name' => 'StringTrim'),
+			),
+			'validators' => array(
+				array(
+					'name'    => 'StringLength',
+					'options' => array(
+						'encoding' => 'UTF-8',
+						'min'      => 6,
+						'max'      => 12,
+					),
+				),
+			),
+		));	
 
-	$this->add(array(
-            'name'     => 'usr_password_confirm',
-            'required' => true,
-            'filters'  => array(
-		array('name' => 'StripTags'),
-		array('name' => 'StringTrim'),
-            ),
-            'validators' => array(
-                array(
-                    'name'    => 'StringLength',
-                    'options' => array(
-                        'encoding' => 'UTF-8',
-                        'min'      => 6,
-                        'max'      => 12,
-                    ),
-                ),
-                array(
-                    'name'    => 'Identical',
-                    'options' => array(
-                        'token' => 'usr_password',
-                    ),
-                ),
-            ),
-	));		
+		$this->add(array(
+			'name'     => 'usr_password_confirm',
+			'required' => true,
+			'filters'  => array(
+				array('name' => 'StripTags'),
+				array('name' => 'StringTrim'),
+			),
+			'validators' => array(
+				array(
+					'name'    => 'StringLength',
+					'options' => array(
+						'encoding' => 'UTF-8',
+						'min'      => 6,
+						'max'      => 12,
+					),
+				),
+				array(
+					'name'    => 'Identical',
+					'options' => array(
+						'token' => 'usr_password',
+					),
+				),
+			),
+		));		
     }
 }

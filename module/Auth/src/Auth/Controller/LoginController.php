@@ -23,8 +23,8 @@ class LoginController extends AbstractActionController
     {
         $user = $this->identity();
 	$form = new AuthForm();
-	$form->get('submit')->setValue('Login');
-	$messages = null;
+	$form->get('submit')->setValue('Увійти');
+	$messages = '';
 
 	$request = $this->getRequest();
         if ($request->isPost()) {
@@ -85,7 +85,8 @@ class LoginController extends AbstractActionController
 				}				
 			foreach ($result->getMessages() as $message) {
                             $messages .= "$message\n"; 
-			}			
+			}
+                        			
                     }
 	}
 	return new ViewModel(array('form' => $form, 'messages' => $messages)); 

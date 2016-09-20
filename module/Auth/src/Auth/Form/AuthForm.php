@@ -19,7 +19,7 @@ class AuthForm extends Form
                 'type'  => 'Text',
             ),
             'options' => array(
-                'label' => 'Username',
+                'label' => 'Логін',
             ),
         ));
         $this->add(array(
@@ -28,7 +28,7 @@ class AuthForm extends Form
                 'type'  => 'Password',
             ),
             'options' => array(
-                'label' => 'Password',
+                'label' => 'Пароль',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -43,7 +43,7 @@ class AuthForm extends Form
 //                'type'  => '\Zend\Form\Element\Checkbox',
 //            ),
             'options' => array(
-                'label' => 'Remember Me?',
+                'label' => 'Запам\'яти?',
 //		'checked_value' => 'true', without value here will be 1
 //		'unchecked_value' => 'false', // witll be 1
             ),

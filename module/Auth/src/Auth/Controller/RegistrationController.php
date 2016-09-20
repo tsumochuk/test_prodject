@@ -18,7 +18,7 @@ class RegistrationController extends AbstractActionController
     public function indexAction()
     {
         $form = new RegistrationForm();
-        $form->get('submit')->setValue('Register now');
+        $form->get('submit')->setValue('Зареєструватися');
         
         $request = $this->getRequest();
         if ($request->isPost()) {

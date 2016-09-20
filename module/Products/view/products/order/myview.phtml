@@ -1,0 +1,55 @@
+
+<?php
+$title = 'Деталі про замовдення';
+$this->headTitle($title);
+?>
+<br /><br />
+<a href="<?php echo $this->url('products/default', array('controller' => 'order', 'action' => 'my'));?>" class="btn btn-default btn-lg btn-block">Повернутися до моїх замовлень</a>
+<br />
+<div class="row">
+ <div class="col-sm-2"></div>
+ <div class="col-sm-8">
+<p class="lead">Детальна інформація про замовлення № <?php  echo $this->escapeHtml($order_inf->order_id); ?></p>
+
+<table class="table table-striped table-hover">
+ 
+ <tbody>
+    <tr>
+        <th>Назва товару</th>
+        <td><?php  echo $this->escapeHtml($product_inf->product_name); ?></td>
+    </tr>
+    <tr>
+        <th>Кількість товару, шт</th>
+        <td><?php  echo $this->escapeHtml($order_inf->order_amount); ?></td>
+    </tr>
+    <tr>
+        <th>Ціна за одиницю товару, грн</th>
+        <td><?php  echo $this->escapeHtml($product_inf->product_price); ?></td>
+    </tr>
+    <tr>
+        <th>Загальна ціна замовлення</th>
+        <td><?php  echo $this->escapeHtml($order_inf->order_price); ?></td>
+    </tr>
+    <tr>
+        <th>Cтатус замовлення</th>
+        <td><?php  
+                    if($order_inf->order_status == 0) $order_status = 'Нове замовлення, нерозглянуте'; 
+                    else if ($order_inf->order_status == 1) $order_status = 'Виконане'; 
+                    else $status = 'Unknow status';
+                    echo $this->escapeHtml($order_status);?>
+        </td>
+    </tr>
+    <tr>
+        <th>Дата замовлення</th>
+        <td><?php  echo $this->escapeHtml($order_inf->order_create_date); ?></td>
+        
+    </tr>
+   
+ </tbody>
+ </table>
+</div>
+ <div class="col-sm-2"></div> 
+</div>
+
+
+

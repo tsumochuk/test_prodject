@@ -36,7 +36,7 @@ return array(
                     'paginator' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/:controller/[page/:page]',
+                            'route'    => '/:controller[/:action][page/:page]',
                             'constraints' => array(
                                 'page' => '[0-9]*',
                             ),
@@ -47,7 +47,49 @@ return array(
                             ),
                         ),
                     ),
-					
+					'paginator_name' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/sortname/:controller[/:action]/[page/:page]',
+                            'constraints' => array(
+                                'page' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                               '__NAMESPACE__' => 'Magazin\Controller',
+                                'controller'    => 'index',
+                                'action'        => 'sortname',
+                            ),
+                        ),
+                    ),
+					'paginator_sortcheap' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/sortcheap/:controller[/:action]/[page/:page]',
+                            'constraints' => array(
+                                'page' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                               '__NAMESPACE__' => 'Magazin\Controller',
+                                'controller'    => 'index',
+                                'action'        => 'sortcheap',
+                            ),
+                        ),
+                    ),
+					'paginator_sortcostly' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/sortcostly/:controller[/:action]/[page/:page]',
+                            'constraints' => array(
+                                'page' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                               '__NAMESPACE__' => 'Magazin\Controller',
+                                'controller'    => 'index',
+                                'action'        => 'sortcostly',
+                            ),
+                        ),
+                    ),
+		
                 ),
             ),			
 		),

@@ -4,14 +4,15 @@
     <div class="col-sm-8">
 <div class="bs-docs-section">
     <div class="well">
-        
+
 <?php
 
-$form->setAttribute('action', $this->url('auth/default', array('controller' => 'registration', 'action' => 'index')));
+$form->setAttribute('action', $this->url('products/default', array('controller' => 'order', 'action' => 'status', 'id' => $id)));
 $form->prepare();
 
+
 echo $this->form()->openTag($form);
-    echo '<fieldset><legend>Реєстрація</legend>';
+   // echo "<fieldset><legend>Замовити $this->escapeHtml($product->product_name)</legend>";
     foreach ($form as $element) {
         echo '<div class="form-group">';
         $attributes = $element->getAttributes();
@@ -25,8 +26,8 @@ echo $this->form()->openTag($form);
             {
             echo $this->formLabel($element);
             echo '<div class="col-lg-8">';
-                echo $this->formInput($element);
-				echo $this->formElementErrors($element);
+            echo $this->formInput($element);
+            echo $this->formElementErrors($element);
             echo '</div>';
             }
             elseif (isset($attributes['type']) && $attributes['type'] == 'textarea')
@@ -34,54 +35,38 @@ echo $this->form()->openTag($form);
                     echo $this->formLabel($element);
                     echo '<div class="col-lg-8">';
                     echo $this->formTextArea($element);
-					echo $this->formElementErrors($element);
+                    echo $this->formElementErrors($element);
                     echo '</div>';
                 }
-            elseif(isset($attributes['type']) && $attributes['type'] == 'file')
-                {
-                    echo $this->formLabel($element);
-                    echo '<div class="col-lg-8">';
-                        echo $this->formFile($element);
-                    echo '</div>';
-                }
-                elseif(isset($attributes['type']) && $attributes['type'] == 'email')
-                {
-                    echo $this->formLabel($element);
-                    echo '<div class="col-lg-8">';
-                    echo $this->formEmail($element);
-					echo $this->formElementErrors($element);
-                    echo '</div>';
-                }
-                 elseif(isset($attributes['type']) && $attributes['type'] == 'password')
-                {
-                    echo $this->formLabel($element);
-                    echo '<div class="col-lg-8">';
-                    echo $this->formPassword($element);
-					echo $this->formElementErrors($element);
-                    echo '</div>';
-                }
-				elseif(isset($attributes['type']) && $attributes['type'] == 'number')
+                elseif(isset($attributes['type']) && $attributes['type'] == 'number')
                 {
                     echo $this->formLabel($element);
                     echo '<div class="col-lg-8">';
                     echo $this->formNumber($element);
-					echo $this->formElementErrors($element);
+                    echo $this->formElementErrors($element);
                     echo '</div>';
                 }
-		/*		elseif(isset($attributes['type']) && $attributes['type'] == 'captcha')
+                elseif(isset($attributes['type']) && $attributes['type'] == 'range')
                 {
                     echo $this->formLabel($element);
                     echo '<div class="col-lg-8">';
-                    echo $this->formCaptcha($element);
-					echo $this->formElementErrors($element);
+                    echo $this->formRange($element);
+                    echo $this->formElementErrors($element);
                     echo '</div>';
                 }
-		*/
-                
+                elseif(isset($attributes['type']) && $attributes['type'] == 'select')
+                {
+                    echo $this->formLabel($element);
+                    echo '<div class="col-lg-8">';
+                    echo $this->formSelect($element);
+                    echo $this->formElementErrors($element);
+                    echo '</div>';
+                }
                 else 
                 {
                 echo '<div class="col-lg-12">';
                      echo $this->formRow($element);
+					 echo $this->formElementErrors($element);
                      echo '</div>';
                 }
                         
@@ -99,10 +84,9 @@ echo $this->form()->closeTag();
     <div class="col-sm-2"></div>
 </div>
 
-<br />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="jquery.maskedinput.min.js"></script>
-<script src="script.js"></script>
+
+
+
    
     
     

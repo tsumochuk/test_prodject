@@ -10,57 +10,64 @@ return array(
         ),
         'resources' => array(
             'allow' => array(
-				'Magazin\Controller\Index' => array(
-					'index'	=> 'guest',
-					'task'	=> 'guest',
-				
-					//'add'	=> 'admin',
-					//'delete'=> 'admin',
-				),
-				
-				'Application\Controller\Index' => array(
-					'all'   => 'guest'					
-				),
-				'Auth\Controller\Login' => array(
-					'index' => 'guest',
-					'logout'=> 'member',
+		'Magazin\Controller\Index' => array(
+                    'index'	=> 'guest',
+                    'task'	=> 'guest',
+					'sortname'	=> 'guest',
+					'sortcheap'	=> 'guest',
+					'sortcostly'=>	'guest',
+		),		
+		'Application\Controller\Index' => array(
+                    'all'   => 'guest'					
+		),
+		'Auth\Controller\Login' => array(
+                    'index' => 'guest',
+                    'logout'=> 'member',
                     //'all'   => 'member',	
-					//'all'   => 'guest'					
-				),
-				'Auth\Controller\Admin' => array(
-					'index' => 'admin',
-                    // 'all'   => 'member',	
-					//'all'   => 'guest'
-					'view' => 'admin',
-				),
-				'Auth\Controller\Registration' => array(
-					// 'index' => 'guest',
-                    // 'all'   => 'member',	
-					'index'   => 'guest'					
-				),
-				'Products\Controller\Index' => array(
-					'index' => 'admin',
-                    'all'   => 'admin',	
-					'add' 	=> 'admin',
-					'edit'  => 'admin',
-					'view'	=> 'guest',
-				),
-			
+                    //'all'   => 'guest'					
+		),
+		'Auth\Controller\Admin' => array(
+                    'index' => 'admin',
+                    //'all'   => 'member',	
+                    //'all'   => 'guest'
+                    'view' => 'admin',
+		),
+		'Auth\Controller\Registration' => array(
+                    //'index' => 'guest',
+                    //'all'   => 'member',	
+                    'index'   => 'guest'					
+		),
+		'Products\Controller\Index' => array(
+		'index' => 'admin',
+                'all'   => 'admin',	
+		'add' 	=> 'admin',
+		'edit'  => 'admin',
+		'view'	=> 'guest',
+		),
+		'Products\Controller\Order' => array(
+                    'add' => 'member',
+                    'all'  =>  'admin',
+                    'cancel'  =>  'member',
+                    'edit'  =>  'member',
+                    'my'  =>  'member',
+                    'status'  =>  'admin',
+                    'view'  =>  'member',
+					'myview'  =>  'member',
+                ),	
             ),
-			'deny' => array (
-				'Auth\Controller\Login' => array(
-					'index' => 'member',
-					//'logout'=> 'member',
-                    //'all'   => 'member',	
-					//'all'   => 'guest'					
-				),
-				'Auth\Controller\Registration' => array(
-					// 'index' => 'guest',
-                    // 'all'   => 'member',	
-					'index'   => 'member'					
-				),
-
-			),
+            'deny' => array (
+                'Auth\Controller\Login' => array(
+		'index' => 'member',
+		//'logout'=> 'member',
+                //'all'   => 'member',	
+		//'all'   => 'guest'					
+		),
+		'Auth\Controller\Registration' => array(
+		//'index' => 'guest',
+                //'all'   => 'member',	
+		'index'   => 'member'					
+                ),
+            ),
         )
     )
 );

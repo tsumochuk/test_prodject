@@ -15,7 +15,7 @@
   <ul class="dropdown-menu">
     <li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'index'));?>">Найновіші товари</a></li>
     <li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortname'));?>">За ім'ям</a></li>
-    <li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcheap'));?>">Найдешевші товари</a></li>
+	<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcheap'));?>">Найдешевші товари</a></li>
 	<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcostly'));?>">Найдорощі товари</a></li>
   </ul>
 </div>
@@ -37,11 +37,10 @@
 
 
 
-
 	
    <div class="well">
-   <h4>Товари відсортовано за датою(найновіші)</h4>
    
+   <h4>Товари відсортовано за ціною (найдешевші)</h4>
    
 <?php foreach ($rowset as $row) { ?>
 <div class="panel panel-default">
@@ -64,5 +63,5 @@
 <?php echo $this->paginationControl($this->rowset,
                                    'Sliding', 
                                     'partial/paginator.phtml', 
-                                    array('route' => 'magazin/paginator'));
+                                    array('route' => 'magazin/paginator_sortcheap'));
 ?>
