@@ -26,7 +26,7 @@ class IndexController extends AbstractActionController
         $paginator->setCurrentPageNumber((int)$page);
         $paginator->setItemCountPerPage(5);
         return new ViewModel(array('rowset' => $paginator));
-		'rowset' => $this->getProductTable()->fetchAll()));
+		
     }
 	
     public function addAction() 
