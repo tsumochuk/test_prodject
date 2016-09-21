@@ -14,27 +14,25 @@ use Products\Form\ProductEditFilter;
 
 class IndexController extends AbstractActionController
 {
-	
     protected $productTable = null;
 
     public function indexAction()
     {
-            $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
+        $paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\DbTableGateway($this->getProductTable()));
 
-            $page = 1;
-            if ($this->params()->fromRoute('page')) {
-            $page = $this->params()->fromRoute('page');}
-            $paginator->setCurrentPageNumber((int)$page);
-            $paginator->setItemCountPerPage(5);
-            return new ViewModel(array('rowset' => $paginator));
-		 //return new ViewModel(array(
-         //   'rowset' => $this->getProductTable()->fetchAll()));
+        $page = 1;
+        if ($this->params()->fromRoute('page')) {
+        $page = $this->params()->fromRoute('page');}
+        $paginator->setCurrentPageNumber((int)$page);
+        $paginator->setItemCountPerPage(5);
+        return new ViewModel(array('rowset' => $paginator));
+		'rowset' => $this->getProductTable()->fetchAll()));
     }
 	
     public function addAction() 
 	{
 		$form = new ProductForm();
-		$form->get('submit')->setValue('Add now');
+		$form->get('submit')->setValue('Додати товар');
 		
 		$request = $this->getRequest();
 		
@@ -61,6 +59,7 @@ class IndexController extends AbstractActionController
 		$id = $this->params()->fromRoute('id');
 		if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'index', 'action' => 'index'));
 		$form = new ProductForm();
+		$form->get('submit')->setValue('Зберегти зміни');
 		$request = $this->getRequest();
         if ($request->isPost()) {
 		$form->setInputFilter(new ProductEditFilter($this->getServiceLocator()));
@@ -128,15 +127,14 @@ class IndexController extends AbstractActionController
 	
     public function getProductTable()
     {
-	// I have a Table data Gateway ready to go right out of the box
-	if (!$this->productTable) {
-            $this->productTable = new TableGateway(
-		'product', 
-		$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
-                //new \Zend\Db\TableGateway\Feature\RowGatewayFeature('usr_id') // Zend\Db\RowGateway\RowGateway Object
-                //ResultSetPrototype
-            );
-	}
+		if (!$this->productTable) {
+				$this->productTable = new TableGateway(
+			'product', 
+			$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
+					//new \Zend\Db\TableGateway\Feature\RowGatewayFeature('usr_id') // Zend\Db\RowGateway\RowGateway Object
+					//ResultSetPrototype
+				);
+		}
 	return $this->productTable;
     }
 }

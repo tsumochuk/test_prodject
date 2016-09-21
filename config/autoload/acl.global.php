@@ -12,7 +12,6 @@ return array(
             'allow' => array(
 		'Magazin\Controller\Index' => array(
                     'index'	=> 'guest',
-                    'task'	=> 'guest',
 					'sortname'	=> 'guest',
 					'sortcheap'	=> 'guest',
 					'sortcostly'=>	'guest',

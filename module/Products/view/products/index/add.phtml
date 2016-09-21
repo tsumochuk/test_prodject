@@ -11,7 +11,7 @@ $form->setAttribute('action', $this->url('products/default', array('controller' 
 $form->prepare();
 
 echo $this->form()->openTag($form);
-    echo '<fieldset><legend>Add new product</legend>';
+    echo '<fieldset><legend>Додавання товару</legend>';
     foreach ($form as $element) {
         echo '<div class="form-group">';
         $attributes = $element->getAttributes();

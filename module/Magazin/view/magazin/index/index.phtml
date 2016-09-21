@@ -3,66 +3,52 @@
     $this->headTitle($title);
 ?>
  <div class="row">
-     <div class="col-sm-2">
+    <div class="col-sm-2">
 	    <div class="bs-docs-section">
-
-	 <div class="btn-group">
-	 
-	 
- <div class="btn-group">
-  <a href="" class="btn btn-primary disabled">Сортування</a>
-  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-  <ul class="dropdown-menu">
-    <li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'index'));?>">Найновіші товари</a></li>
-    <li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortname'));?>">За ім'ям</a></li>
-    <li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcheap'));?>">Найдешевші товари</a></li>
-	<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcostly'));?>">Найдорощі товари</a></li>
-  </ul>
-</div>
-
-
-
-  </div>
-
-
-	
-   </div>
-   
-    </div>
-	
-	
-<div class="col-sm-10">
-
-    <div class="bs-docs-section">
-
-
-
-
-	
-   <div class="well">
-   <h4>Товари відсортовано за датою(найновіші)</h4>
+			<div class="btn-group">
+				<div class="btn-group">
+				  <a href="" class="btn btn-primary disabled">Сортування</a>
+				  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'index'));?>">Найновіші товари</a></li>
+					<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortname'));?>">За ім'ям</a></li>
+					<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcheap'));?>">Найдешевші товари</a></li>
+					<li><a href="<?php echo $this->url('magazin/default', array('controller' => 'index', 'action' => 'sortcostly'));?>">Найдорощі товари</a></li>
+				  </ul>
+				</div>	
+			</div>
+		</div>	
+	</div>	
+	<div class="col-sm-10">
+		<div class="bs-docs-section">
+			
+			<h4>Товари відсортовано за датою(найновіші)</h4>
    
    
-<?php foreach ($rowset as $row) { ?>
-<div class="panel panel-default">
-  <div class="panel-heading"><h2><?php  echo $this->escapeHtml($row->product_name); ?></h2></div>
-    <div class="panel-body">
-        <blockquote>
-            <small>Ціна : <?php  echo $this->escapeHtml($row->product_price); ?> грн</small>
-            <small>Кількість : <?php  echo $this->escapeHtml($row->product_amount); ?> шт.</small>
-            <small>Додано : <?php  echo $this->escapeHtml($row->product_create_date); ?></small>
-	</blockquote>
-	<p><?php  echo $this->escapeHtml((mb_substr($row->product_discribe,0, 200, 'UTF-8') . '...' )); ?></p>
-    </div>
-    <div class="panel-footer">
-    <p><a href="<?php echo $this->url('products/default', array('controller' => 'index', 
-        'action' => 'view', 'id' => $row->product_id));?>"  class="btn btn-primary">Читати далі</a></p></div>
-</div>
-<?php } ?>
-        </div>
-    </div>
+			<?php foreach ($rowset as $row) { ?>
+			<div class="well">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h2><?php  echo $this->escapeHtml($row->product_name); ?></h2></div>
+					<div class="panel-body">
+					<blockquote>
+						<small>Ціна : <?php  echo $this->escapeHtml($row->product_price); ?> грн</small>
+						<small>Кількість : <?php  echo $this->escapeHtml($row->product_amount); ?> шт.</small>
+						<small>Додано : <?php  echo $this->escapeHtml($row->product_create_date); ?></small>
+					</blockquote>
+					<p><?php  echo $this->escapeHtml((mb_substr($row->product_discribe,0, 200, 'UTF-8') . '...' )); ?></p>
+					</div>
+					<div class="panel-footer">
+						<p><a href="<?php echo $this->url('products/default', array('controller' => 'index', 
+						'action' => 'view', 'id' => $row->product_id));?>"  class="btn btn-primary">Читати далі</a></p>
+					</div>
+				</div>
+			</div>
+			<?php } ?>
+		</div> 
 <?php echo $this->paginationControl($this->rowset,
                                    'Sliding', 
                                     'partial/paginator.phtml', 
                                     array('route' => 'magazin/paginator'));
 ?>
+ </div>
+ </div>

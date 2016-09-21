@@ -24,8 +24,6 @@ class AdminController extends AbstractActionController
             $paginator->setCurrentPageNumber((int)$page);
             $paginator->setItemCountPerPage(5);
             return new ViewModel(array('rowset' => $paginator));
-            //
-	//return new ViewModel(array('rowset' => $this->getUsersTable()->select()));  
     }
     
     public function viewAction()
@@ -37,13 +35,10 @@ class AdminController extends AbstractActionController
 
     public function getUsersTable()
     {
-	// I have a Table data Gateway ready to go right out of the box
 	if (!$this->usersTable) {
             $this->usersTable = new TableGateway(
-		'users', 
-		$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
-                //new \Zend\Db\TableGateway\Feature\RowGatewayFeature('usr_id') // Zend\Db\RowGateway\RowGateway Object
-                //ResultSetPrototype
+			'users', 
+			$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
             );
 	}
 	return $this->usersTable;

@@ -30,53 +30,48 @@ class OrderController extends AbstractActionController
 
     public function AllAction()
 	{
-	$paginator = $this->OrderTable()->fetchAll(true);
-	$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
-		 // set the number of items per page to 10
-	$paginator->setItemCountPerPage(5);
-        return new ViewModel(array('rowset' => $paginator));	
+		$paginator = $this->OrderTable()->fetchAll(true);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1)); 
+		$paginator->setItemCountPerPage(5);
+		return new ViewModel(array('rowset' => $paginator));	
 	}
+	
 	public function MyAction()
 	{
-            return new ViewModel(array(
-                'myorder' => $this->OrderTable()->findMyOrder($this->getUserId())
-            ));
+        return new ViewModel(array(
+            'myorder' => $this->OrderTable()->findMyOrder($this->getUserId())
+        ));
 	}
+	
 	public function AddAction()
 	{
-            $id = $this->params()->fromRoute('id');
-            //if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'add'));
-
-            //$user = $this->identity();
-            //$user_id = $user->usr_id;
-            $form = new OrderAddForm();
-            $form->get('submit')->setValue('Замовити');
+         $id = $this->params()->fromRoute('id');
             
-            $request = $this->getRequest();
+        $form = new OrderAddForm();
+        $form->get('submit')->setValue('Замовити');
             
-            if($request->isPost()) {
-                $form->setInputFilter(new OrderAddFilter($this->getServiceLocator()));
-                $form->setData($request->getPost());
-                if ($form->isValid()) {
-                    $data = $form->getData();
-                    $data = $this->prepareData($data, $id);
-                    $order = new Order();
-                    $order->exchangeArray($data);
-                    $this->OrderTable()->saveOrder($order);
-                    // create update product`s amount HERE!
-                    $this->updateProductAmount($data, $id);
-                    return $this->redirect()->toRoute('home');					
-                    //return $this->redirect()->toRoute('products/default', 
-                            //array('controller'=>'index', 'action'=>'index'));
-                    
+        $request = $this->getRequest();
+            
+        if($request->isPost()) {
+            $form->setInputFilter(new OrderAddFilter($this->getServiceLocator()));
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $data = $this->prepareData($data, $id);
+                $order = new Order();
+                $order->exchangeArray($data);
+                $this->OrderTable()->saveOrder($order);         
+                $this->updateProductAmount($data, $id);
+                return $this->redirect()->toRoute('home');					        
                 }
             } 
-            return new ViewModel(array(
+        return new ViewModel(array(
                 'form' => $form,
                 'product' => $this->ProductTable()->getProduct($id),
                 'user' => $this->identity()
-                )); //'id' => $product_id, 'usr_id' => $user_id));
+         )); 
 	}
+	
 	public function CancelAction()
 	{
             $id = $this->params()->fromRoute('id');
@@ -89,76 +84,70 @@ class OrderController extends AbstractActionController
                 
             } else return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'my'));
 	}
+	
     public function ViewAction()
 	{
-		/*
-			для детального перегляду конкретного замовлення
-		*/
-            $id = $this->params()->fromRoute('id');
-            if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'all'));
-            $order_inf = $this->OrderTable()->getOrder($id);
-            $product_inf = $this->ProductTable()->getProduct($order_inf->order_product_id);
-            $user_inf = $this->UserTable()->getUser($order_inf->order_user_id);
-            return new ViewModel(array(
+        $id = $this->params()->fromRoute('id');
+        if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'all'));
+        $order_inf = $this->OrderTable()->getOrder($id);
+        $product_inf = $this->ProductTable()->getProduct($order_inf->order_product_id);
+        $user_inf = $this->UserTable()->getUser($order_inf->order_user_id);
+        return new ViewModel(array(
                 'order_inf' => $order_inf,
                 'product_inf' => $product_inf,
                 'user_inf' => $user_inf,
-            ));
-        
+        ));
 	}
-        public function MyviewAction() 
-        {
-            $id = $this->params()->fromRoute('id');
-            if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'my'));
-            $order_inf = $this->OrderTable()->getOrder($id);
-            $product_inf = $this->ProductTable()->getProduct($order_inf->order_product_id);
-            $user_inf = $this->UserTable()->getUser($order_inf->order_user_id);
-            return new ViewModel(array(
-                'order_inf' => $order_inf,
-                'product_inf' => $product_inf,
-                'user_inf' => $user_inf,
-            ));
-        }
-
-        public function StatusAction()
+    
+	public function MyviewAction() 
+    {
+        $id = $this->params()->fromRoute('id');
+        if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'my'));
+        $order_inf = $this->OrderTable()->getOrder($id);
+        $product_inf = $this->ProductTable()->getProduct($order_inf->order_product_id);
+        $user_inf = $this->UserTable()->getUser($order_inf->order_user_id);
+        return new ViewModel(array(
+            'order_inf' => $order_inf,
+            'product_inf' => $product_inf,
+            'user_inf' => $user_inf,
+        ));
+    }
+	
+	public function StatusAction()
 	{
-            $id = $this->params()->fromRoute('id');
-            if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'all'));
-            $form = new StatusForm();
-            $form->get('submit')->setValue('Змінити статус');
-            $request = $this->getRequest();
-                if ($request->isPost()) {
-                        $form->setInputFilter(new StatusFormFilter($this->getServiceLocator()));
-			$form->setData($request->getPost());
-			 if ($form->isValid()) {
-                            $data = $form->getData();
-                            unset($data['submit']);				
-                            $this->getOrderTable()->update($data, array('order_id' => $id));
-                            return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'all'));													
-			}			 
-		}
-		else {
-                    $form->setData($this->getOrderTable()->select(array('order_id' => $id))->current());			
-		}
-		
+        $id = $this->params()->fromRoute('id');
+        if (!$id) return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'all'));
+        $form = new StatusForm();
+        $form->get('submit')->setValue('Змінити статус');
+        $request = $this->getRequest();
+            if ($request->isPost()) {
+                $form->setInputFilter(new StatusFormFilter($this->getServiceLocator()));
+				$form->setData($request->getPost());
+				if ($form->isValid()) {
+                    $data = $form->getData();
+                    unset($data['submit']);				
+                    $this->getOrderTable()->update($data, array('order_id' => $id));
+                    return $this->redirect()->toRoute('products/default', array('controller' => 'order', 'action' => 'all'));													
+				}			 
+			}
+			else{
+                $form->setData($this->getOrderTable()->select(array('order_id' => $id))->current());			
+			}	
 		return new ViewModel(array('form' => $form, 'id' => $id));
 	}
-        
-    //_____________________________________________________
-    // тут функції для prerareDAta
+
     public function prepareData($data, $id)       
     {
-            // data stvorennya zakazy
         $date = new \DateTime();
         $data['order_user_id'] = $this->getUserId();
         $data['order_product_id'] = $id;
-       // $data['order_amount'] = '';
         $data['order_price'] = $data['order_amount'] * $this->getProductPrice($id);
         $data['order_create_date'] = $date->format('Y-m-d H:i:s');
         $data['order_status'] = 0;
             
         return $data;
     }
+	
     public function getUserId() 
     {
         return $this->identity()->usr_id;
@@ -170,12 +159,14 @@ class OrderController extends AbstractActionController
         $item = $this->ProductTable()->getProduct($id);
         return $item->product_price;
     }
+	
     public function getProductAmount($id) 
     {
         $id = (int)$id;
         $item = $this->ProductTable()->getProduct($id);
         return $item->product_amount;
     }
+	
     public function updateProductAmount($data, $id)
     {
         $id = (int)$id;
@@ -190,9 +181,6 @@ class OrderController extends AbstractActionController
         $this->ProductTable()->updateProductAmount($id, $newAmount);   
     }
 
-
-    //_____________________________________________________
-    // тут функції для Model  
     public function ProductTable()
     {
         if (!$this->productTable) {
@@ -201,6 +189,7 @@ class OrderController extends AbstractActionController
         }
         return $this->productTable;
     }
+	
     public function OrderTable()
     {
         if (!$this->orderTable) {
@@ -209,26 +198,26 @@ class OrderController extends AbstractActionController
         }
         return $this->orderTable;
     }
+	
     public function getOrderTable()
     {
-	// I have a Table data Gateway ready to go right out of the box
-	if (!$this->orderTable) {
-            $this->orderTable = new TableGateway(
-		'order', 
-		$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
-                //new \Zend\Db\TableGateway\Feature\RowGatewayFeature('usr_id') // Zend\Db\RowGateway\RowGateway Object
-                //ResultSetPrototype
-            );
-	}
-	return $this->orderTable;
+		if (!$this->orderTable) {
+			$this->orderTable = new TableGateway(
+			'order', 
+			$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
+
+				);
+		}
+		return $this->orderTable;
     }
+	
     public function UserTable()
-        {
-            if (!$this->usersTable) {
-                $sm = $this->getServiceLocator();
-                $this->usersTable = $sm->get('Auth\Model\UsersTable');
-            }
-            return $this->usersTable;
+    {
+        if (!$this->usersTable) {
+            $sm = $this->getServiceLocator();
+            $this->usersTable = $sm->get('Auth\Model\UsersTable');
         }
+        return $this->usersTable;
+    }
 }
 

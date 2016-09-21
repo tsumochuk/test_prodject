@@ -7,27 +7,26 @@
  <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
-<div class="bs-docs-section">
-    <div class="well">
-
-
-<div class="jumbotron">
-  <h2><?php  echo $this->escapeHtml($rowset->product_name); ?></h2>
-  <blockquote>
-  <small>Ціна : <?php  echo $this->escapeHtml($rowset->product_price); ?></small>
-  <small>Кількість : <?php  echo $this->escapeHtml($rowset->product_amount); ?></small>
-  <small>Додано : <?php  echo $this->escapeHtml($rowset->product_create_date); ?></small>
-	</blockquote>
-
-  <p><?php  echo $this->escapeHtml($rowset->product_discribe); ?></p>
-  
-  <p><a href="<?php echo $this->url('products/default', 
-                                array('controller' => 'order', 'action' => 'add',
-                                'id' => $rowset->product_id));?>"  
-                                class="btn btn-primary btn-lg <?php echo $status?>">Замовити</a></p>
-</div>
-     </div>
-</div>
-    </div>
+		<div class="bs-docs-section">
+			<div class="well">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h2><?php  echo $this->escapeHtml($rowset->product_name); ?></h2></div>
+					<div class="panel-body">
+					<blockquote>
+						<small>Ціна : <?php  echo $this->escapeHtml($rowset->product_price); ?> грн</small>
+						<small>Кількість : <?php  echo $this->escapeHtml($rowset->product_amount); ?> шт.</small>
+						<small>Додано : <?php  echo $this->escapeHtml($rowset->product_create_date); ?></small>
+					</blockquote>
+					<p><?php  echo $this->escapeHtml($rowset->product_discribe); ?></p>
+					</div>
+					<div class="panel-footer">
+						<p><a href="<?php echo $this->url('products/default', 
+							array('controller' => 'order', 'action' => 'add',
+							'id' => $rowset->product_id));?>"class="btn btn-primary btn-lg <?php echo $status?>">Замовити</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <div class="col-sm-1"></div>
 </div>

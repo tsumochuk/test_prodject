@@ -1,7 +1,12 @@
 <?php
 $title = 'Детальна інформація про замовлення';
 $this->headTitle($title);
-?><br /><br />
+?>
+<br />
+<div class="row">
+    <div class="col-sm-0"></div>
+	<div class="col-sm-12">
+	<br />
 <a href="<?php echo $this->url('products/default', array('controller' => 'order', 'action' => 'all'));?>"
    class="btn btn-default btn-lg btn-block">Повернутися до списку всіх замовлень</a>
 <br />
@@ -85,5 +90,7 @@ $this->headTitle($title);
             <td><?php  echo $this->escapeHtml($product_inf->product_create_date); ?></td>
 	</tr>
     </tbody>
-</table>
+</table></div>
+<div class="col-sm-0"></div>
+</div>
 

@@ -1,4 +1,7 @@
-
+<?php
+$title = 'Редагування товару';
+$this->headTitle($title);
+?>
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
@@ -12,7 +15,7 @@ $form->setAttribute('method', 'post');
 
 
 echo $this->form()->openTag($form);
-    echo '<fieldset><legend>Editt</legend>';
+    echo '<fieldset><legend>Редагування товару</legend>';
     foreach ($form as $element) {
         echo '<div class="form-group">';
         $attributes = $element->getAttributes();

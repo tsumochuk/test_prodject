@@ -4,11 +4,10 @@ $title = 'Деталі про замовдення';
 $this->headTitle($title);
 ?>
 <br /><br />
-<a href="<?php echo $this->url('products/default', array('controller' => 'order', 'action' => 'my'));?>" class="btn btn-default btn-lg btn-block">Повернутися до моїх замовлень</a>
-<br />
 <div class="row">
  <div class="col-sm-2"></div>
  <div class="col-sm-8">
+ <a href="<?php echo $this->url('products/default', array('controller' => 'order', 'action' => 'my'));?>" class="btn btn-default btn-lg btn-block">Повернутися до моїх замовлень</a>
 <p class="lead">Детальна інформація про замовлення № <?php  echo $this->escapeHtml($order_inf->order_id); ?></p>
 
 <table class="table table-striped table-hover">

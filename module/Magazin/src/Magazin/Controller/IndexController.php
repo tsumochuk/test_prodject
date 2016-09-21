@@ -48,15 +48,6 @@ public function indexAction()
 		return new ViewModel(array('rowset' => $paginator));; 
         
     }
-	
-
-
-    public function taskAction()
-    {
-        return new ViewModel();    
-    }
-    
-
 
     public function getProductTable()
     {

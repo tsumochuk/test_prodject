@@ -78,30 +78,11 @@ return array( // ToDO make it dynamic - comes from the DB
                     'resource'   => 'Auth\Controller\Login', // 'mvc:admin',
                     'privilege'	=> 'logout'
             ),
-            array(
-                'label' => 'ЗАВДАННЯ', // 'Page #2',
-                'route' => 'magazin/default', // 'page-2',
-                    'controller' => 'index',
-                    'action'	=> 'task',
-                    'resource'   => 'Magazin\Controller\Index', // 'mvc:admin',
-                    'privilege'	=> 'task'
-            ),
          ),				  
      ),
      'service_manager' => array(
          'factories' => array(
              'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-			 // 'secondary_navigation' => 'CsnNavigation\Navigation\Service\SecondaryNavigationFactory',
-			// 'secondary_navigation' => 'Csn\Zend\Navigation\Service\SecondaryNavigationFactory',
          ),
      ),
 );
-
-/*
-action	String	NULL	Action name to use when generating href to the page.
-controller	String	NULL	Controller name to use when generating href to the page.
-params	Array	array()	User params to use when generating href to the page.
-route	String	NULL	Route name to use when generating href to the page.
-routeMatch	Zend\Mvc\Router\RouteMatch	NULL	RouteInterface matches used for routing parameters and testing validity.
-router	Zend\Mvc\Router\RouteStackInterface	NULL	Router for assembling URLs
-*/
