@@ -1,0 +1,88 @@
+<?php
+    $title = 'About my Rest api';
+    $this->headTitle($title);
+?>
+<br /><br /><br /><br />
+ <div class="row">
+    <div class="col-sm-2">  
+    </div>
+     
+
+     <div class="col-sm-8">
+	
+        <div class="panel panel-default">
+            <div class="panel-heading">api для показу всіх товарів<br />використовує метод GET</div>
+            <div class="panel-body">
+                Виводить дані про всі наявні товари у форматі json<br/>
+                Можна виконати команду з терміналу: <br />
+                $ curl -i -H "Accept: application/json" http://www.tsumochuk.ho.ua/products-rest
+            </div>
+        </div>
+         
+         <br/>
+         
+        <div class="panel panel-default">
+            <div class="panel-heading">api для вибору окремого товару за його id<br />використовує метод GET</div>
+            <div class="panel-body">
+                Виводить дані про запис у форматі json<br/>
+                Можна виконати команду з терміналу: <br />
+                $ curl -i -H "Accept: application/json" http://www.tsumochuk.ho.ua/products-rest/id, <br/>
+                де id є унікадьний індентифікатором запису у таблиці
+            </div>
+        </div>
+         
+        <div class="panel panel-default">
+            <div class="panel-heading">api для додавання нового товару<br />використовує метод POST</div>
+            <div class="panel-body">
+                Для додавання запиту потрібно передати наступні параметри:<br/>
+                product_name - назва створюваного товару <br />
+                product_discribe - опис нового товару<br />
+                product_price - ціна нового товару<br />
+                product_amount - кількість нового товару<br />
+                <br />
+                
+                Можна виконати команду з терміналу: <br />
+                $ curl -i -H "Accept: application/json" -X POST -d "product_name=newProduct&product_discribe=newDiscribe&<br />
+                product_price=9999&product_amount=9999" http://www.tsumochuk.ho.ua/products-rest
+            </div>
+        </div>
+         
+                 <div class="panel panel-default">
+            <div class="panel-heading">api для редагування товару<br />використовує метод PUT</div>
+            <div class="panel-body">
+                Для редагування товару потрібно передати наступні параметри:<br/>
+                product_name - нова назва <br />
+                product_discribe - новий опис<br />
+                product_price - нова ціна товару<br />
+                product_amount - нова кількість товару<br />
+                product_id - номер запису якій потрібно редагувати <br />
+                <br />
+                
+                Можна виконати команду з терміналу: <br />
+                $ curl -i -H "Accept: application/json" -X PUT -d "product_name=newProduct&product_discribe=newDiscribe&<br />
+                product_price=9999&product_amount=9999" http://www.tsumochuk.ho.ua/products-rest/product_id
+            </div>
+        </div>
+         
+                       <div class="panel panel-default">
+            <div class="panel-heading">api для видалення товару<br />використовує метод DELETE</div>
+            <div class="panel-body">
+                Для редагування товару потрібно передати наступні параметри:<br/>
+                product_id - номер запису якій потрібно видалити <br />
+                <br />
+                
+                Можна виконати команду з терміналу: <br />
+                $ curl -i -H "Accept: application/json" -X DELETE <br />http://www.tsumochuk.ho.ua/products-rest/product_id
+            </div>
+        </div>
+  
+         
+         
+     </div>
+     
+     
+     
+     <div class="col-sm-2">
+	  
+    </div>
+ </div>

@@ -4,11 +4,13 @@ return array(
     'modules' => array(
         'Application',
         //'ZendDeveloperTools',
-		'AclAuthorize',
-		'AclNavigation',
+	'AclAuthorize',
+	'AclNavigation',
         'Magazin',
         'Auth',
-		'Products',
+	'Products',
+        'ProductsRest',
+        'Information',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
@@ -17,6 +19,9 @@ return array(
         // If a string key is provided, the listener will consider that a module
         // namespace, the value of that key the specific path to that module's
         // Module class.
+        'config_glob_paths'    => array(
+            '../../../config/autoload/{,*.}{global,local}.php',
+        ),
         'module_paths' => array(
             './module',
             './vendor',

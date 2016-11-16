@@ -12,13 +12,19 @@ return array(
             'allow' => array(
 		'Magazin\Controller\Index' => array(
                     'index'	=> 'guest',
-					'sortname'	=> 'guest',
-					'sortcheap'	=> 'guest',
-					'sortcostly'=>	'guest',
+                    'sortname'	=> 'guest',
+                    'sortcheap'	=> 'guest',
+                    'sortcostly'=>	'guest',
 		),		
 		'Application\Controller\Index' => array(
                     'all'   => 'guest'					
 		),
+                'ProductsRest\Controller\ProductsRest' => array(
+                    'all' => 'guest'
+                ),
+                'Information\Controller\Information' => array(
+                    'index' => 'guest'
+                ),
 		'Auth\Controller\Login' => array(
                     'index' => 'guest',
                     'logout'=> 'member',
@@ -51,7 +57,7 @@ return array(
                     'my'  =>  'member',
                     'status'  =>  'admin',
                     'view'  =>  'member',
-					'myview'  =>  'member',
+                    'myview'  =>  'member',
                 ),	
             ),
             'deny' => array (

@@ -67,6 +67,8 @@ class IndexController extends AbstractActionController
 			 if ($form->isValid()) {
 				$data = $form->getData();
 				unset($data['submit']);
+                                unset($data['product_id']);
+                                $data = $this->prepareData($data);
 				//if (empty($data['product_create_date'])) $data['product_create_date'] = '2013-07-19 12:00:00';
 				$this->getProductTable()->update($data, array('product_id' => $id));
 				return $this->redirect()->toRoute('products/default', array('controller' => 'index', 'action' => 'index'));													

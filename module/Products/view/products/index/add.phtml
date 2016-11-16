@@ -53,7 +53,7 @@ echo $this->form()->openTag($form);
 					echo $this->formElementErrors($element);
                     echo '</div>';
                 }
-                else 
+                elseif(isset($attributes['type']) && $attributes['type'] != 'hidden')
                 {
                 echo '<div class="col-lg-12">';
                      echo $this->formRow($element);

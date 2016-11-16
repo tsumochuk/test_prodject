@@ -13,6 +13,14 @@ class ProductForm extends Form
 		$this->setAttribute('class', 'bs-example form-horizontal');
 
         $this->add(array(
+             'name' => 'product_id',
+             'type' => 'Hidden',
+         ));
+        $this->add(array(
+             'name' => 'product_create_date',
+             'type' => 'Hidden',
+         ));
+         $this->add(array(
             'name' => 'product_name',
             'attributes' => array(
                 'type'  => 'text',

@@ -23,6 +23,14 @@ return array( // ToDO make it dynamic - comes from the DB
 		// 'type' => 'Csn\Zend\Navigation\Page\Mvc',
             ),
             array(
+                'label' => 'About my Rest', // 'Page #2',
+                'route' => 'information', // 'page-2',
+				'controller' => 'information',
+				'action'	=> 'index',
+				'resource'   => 'Information\Controller\Information', // 'mvc:admin',
+				'privilege'	=> 'index'
+            ),
+            array(
                 'label' => 'Увійти', // 'Page #2',
                 'route' => 'auth/default', // 'page-2',
 				'controller' => 'login',

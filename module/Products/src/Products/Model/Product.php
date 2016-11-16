@@ -11,20 +11,20 @@ class Product implements InputFilterAwareInterface
     public $product_id;
     public $product_name;
     public $product_discribe;
-	public $product_price;
+    public $product_price;
     public $product_amount;
-	public $product_create_date;
+    public $product_create_date;
 	
     protected $inputFilter;
      
     public function exchangeArray($data)
     {
-       $this->product_id  = (isset($data['product_id'])) ? $data['product_id']      : null; 
-	   $this->product_name  = (isset($data['product_name'])) ? $data['product_name']      : null; 
-	   $this->product_discribe  = (isset($data['product_discribe'])) ? $data['product_discribe']      : null; 
-	   $this->product_price  = (isset($data['product_price'])) ? $data['product_price']      : null; 
-	   $this->product_amount  = (isset($data['product_amount'])) ? $data['product_amount']      : null; 
-	   $this->product_create_date  = (isset($data['product_create_date'])) ? $data['product_create_date']      : null; 
+        $this->product_id  = (isset($data['product_id'])) ? $data['product_id']      : null; 
+        $this->product_name  = (isset($data['product_name'])) ? $data['product_name']      : null; 
+	$this->product_discribe  = (isset($data['product_discribe'])) ? $data['product_discribe']      : null; 
+        $this->product_price  = (isset($data['product_price'])) ? $data['product_price']      : null; 
+	$this->product_amount  = (isset($data['product_amount'])) ? $data['product_amount']      : null; 
+	$this->product_create_date  = (isset($data['product_create_date'])) ? $data['product_create_date']      : null; 
    
     } 
     
